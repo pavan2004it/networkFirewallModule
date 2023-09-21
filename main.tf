@@ -18,6 +18,9 @@ resource "aws_networkfirewall_firewall_policy" "rp-policy" {
   firewall_policy {
     stateless_default_actions = ["aws:forward_to_sfe"]
     stateless_fragment_default_actions = ["aws:forward_to_sfe"]
+    stateful_engine_options {
+      rule_order = "STRICT"
+    }
     stateful_rule_group_reference {
       resource_arn = aws_networkfirewall_rule_group.rp_rule_group.arn
     }
@@ -49,6 +52,9 @@ resource "aws_networkfirewall_rule_group" "rp_rule_group" {
           }
         }
       }
+    }
+    stateful_rule_options {
+      rule_order = "STRICT_ORDER"
     }
     rules_source {
       rules_string = file(var.rp_rule_group.rules_source.rules_string)
