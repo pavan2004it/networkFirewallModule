@@ -20,7 +20,7 @@ resource "aws_networkfirewall_firewall_policy" "rp-policy" {
     stateless_fragment_default_actions = ["aws:forward_to_sfe"]
     stateful_default_actions = ["aws:drop_established","aws:alert_established"]
     stateful_engine_options {
-      rule_order = "STRICT"
+      rule_order = "STRICT_ORDER"
     }
     stateful_rule_group_reference {
       resource_arn = aws_networkfirewall_rule_group.rp_rule_group.arn
