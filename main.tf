@@ -18,6 +18,7 @@ resource "aws_networkfirewall_firewall_policy" "rp-policy" {
   firewall_policy {
     stateless_default_actions = ["aws:forward_to_sfe"]
     stateless_fragment_default_actions = ["aws:forward_to_sfe"]
+    stateful_default_actions = ["aws:drop_established","aws:alert_established"]
     stateful_engine_options {
       rule_order = "STRICT"
     }
