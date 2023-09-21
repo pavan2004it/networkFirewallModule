@@ -23,6 +23,7 @@ resource "aws_networkfirewall_firewall_policy" "rp-policy" {
       rule_order = "STRICT_ORDER"
     }
     stateful_rule_group_reference {
+      priority = 1
       resource_arn = aws_networkfirewall_rule_group.rp_rule_group.arn
     }
   }
